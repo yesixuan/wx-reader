@@ -2,6 +2,7 @@ const cloud = require('wx-server-sdk')
 
 cloud.init()
 
+const db = cloud.database()
 
 exports.main = async () => {
   const wxContext = cloud.getWXContext()
@@ -9,6 +10,6 @@ exports.main = async () => {
   return {
     openid: wxContext.OPENID,
     appid: wxContext.APPID,
-    unionid: wxContext.UNIONID,
+    unionid: wxContext.UNIONID
   }
 }

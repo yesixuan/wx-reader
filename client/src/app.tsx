@@ -1,6 +1,8 @@
+import '@tarojs/async-await'
 import Taro, { Component, Config } from '@tarojs/taro'
 import Index from './pages/index'
-
+// import 'taro-ui/dist/style/index.scss'
+import 'taro-ui/dist/weapp/css/index.css'
 import './app.styl'
 
 // 如果需要在 h5 环境中开启 React Devtools
@@ -20,7 +22,8 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      'pages/index/index'
+      'pages/index/index',
+      'pages/add/index'
     ],
     window: {
       backgroundTextStyle: 'light',

@@ -1,40 +1,27 @@
-import Taro, { Component } from "@tarojs/taro"
-import { View, Text, Button } from "@tarojs/components"
+import Taro, { useState } from "@tarojs/taro"
+import { View, Text, Button, Input, Textarea } from "@tarojs/components"
 
-export default class Login extends Component {
-  state = {
-    context: {}
-  }
-
-  componentWillMount() {}
-
-  componentDidMount() {}
-
-  componentWillUnmount() {}
-
-  componentDidShow() {}
-
-  componentDidHide() {}
-
-  getLogin = () => {
+export default function Login() {
+  const [ info, setInfo ] = useState(null)
+  const getLogin = () => {
     Taro.cloud
       .callFunction({
         name: "login",
         data: {}
       })
       .then(res => {
-        this.setState({
-          context: res.result
-        })
+        setInfo(res.result)
       })
-  }
+    }
+  const handleJump = path => wx.navigateTo({
+    url: `/pages/${path}`
+  })
 
-  render() {
-    return (
-      <View className='index'>
-        <Button onClick={this.getLogin}>获取登录云函数</Button>
-        <Text>context：{JSON.stringify(this.state.context)}</Text>
-      </View>
-    )
-  }
+  return (
+    <View className='index'>
+      <Button onClick={getLogin}>获取登录云函数</Button>
+      <Text>context：{JSON.stringify(info)}</Text>
+      <Button onClick={handleJump.bind(this, 'add/index')}>添加书名</Button>
+    </View>
+  )
 }
