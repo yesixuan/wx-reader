@@ -6,8 +6,8 @@ import {
 import { useForm } from '../../hooks'
 import './index.styl'
 
-export default function AddBook({ isOpened, handleClose, handleAdd }) {
-  const [field, formData, resetForm] = useForm({ bookName: '', author: '' })
+export default ({ isOpened, handleClose, handleAdd }) => {
+  const [field, formData, , resetForm] = useForm({ bookName: '', author: '' })
   useEffect(() => resetForm(), [isOpened])
 
   const handleSubmit = async () => {

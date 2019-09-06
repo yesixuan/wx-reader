@@ -5,6 +5,7 @@ import {
 } from "taro-ui"
 import AddBook from './addBook'
 import { callCloud } from '../../apis/book'
+import { go } from '../../utils'
 import './index.styl'
 
 export default function Index() {
@@ -36,6 +37,9 @@ export default function Index() {
       fetchData(search)
     }
   }
+  const handleGoBookDetail = (book) => {
+    go('bookDetail/index', book)
+  }
 
   return <View className='book-list'>
     <AtSearchBar value={search} onChange={val => setSearch(val)} />
@@ -60,7 +64,7 @@ export default function Index() {
               }
             }
           ]}>
-            <AtListItem title={book.bookName} note={book.author} />
+            <AtListItem title={book.bookName} note={book.author} onClick={() => handleGoBookDetail(book)} />
           </AtSwipeAction>
         ))
       }

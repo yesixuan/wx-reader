@@ -5,6 +5,11 @@ cloud.init()
 const db = cloud.database()
 
 exports.main = async (event, context) => {
-  const wxContext = cloud.getWXContext()
+  await cloud.callFunction({
+    name: 'deleteNotes',
+    data: {
+      id: event.id
+    }
+  })
   return db.collection('books').doc(event.id).remove()
 }
